@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="section-top">
+        <img src="{% static 'img/slider0.jpg' %}" class="img-responsive">
+    </div>
+
+    <div class="section-group">
+        <h1 class="text-center" style="margin-top: 50px; margin-bottom: 50px;">
+            Новые поступления
+        </h1>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for product_image in product_images %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ product_image.image.url }}" class="card-img-top" alt="Цветы">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ product_image.product.name }}</h5>
+                    <p class="card-text">{{ product_image.product.description | truncatechars_html:70  }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-theme" type="button" id="more">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
